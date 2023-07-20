@@ -1,0 +1,70 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               %
+%  LaTeX Template               %
+%  Akseli Lukkarila             %
+%  2023                         %
+%  LuaLatex                     %
+%                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: move usage to config.sty
+\newcommand{\docauthor}{Akseli Lukkarila}
+\newcommand{\docsubject}{LaTeX Template}
+\newcommand{\doctitle}{\docsubject ~\docauthor}
+\newcommand{\dockeywords}{latex}
+
+\documentclass[11pt, a4paper, oneside]{article}
+
+\usepackage{esgrove}
+
+% Hyperref settings and metadata
+\hypersetup{
+    breaklinks=true,
+    citecolor=black,
+    colorlinks=true,
+    linkcolor=black,
+    pdfauthor={\docauthor},
+    pdfkeywords={\dockeywords},
+    pdfmenubar=false,
+    pdfpagemode=UseNone,
+    pdfstartview=FitH,
+    pdfsubject={\docsubject},
+    pdftitle={\doctitle},
+    pdftoolbar=false,
+    unicode,
+    urlcolor=NavyBlue,
+}
+
+\title{\docsubject}
+\author{\docauthor}
+
+% Dummy document with lorem ipsum text
+\begin{document}
+
+\maketitle
+
+\blinddocument
+\clearpage
+
+\section{Some Math}
+\blindmathpaper
+\begin{table}[t]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{16pt}
+    \caption[Example table]{Example table with tabular numbers}
+    \begin{tabular}{rrrr}
+        \toprule
+        \textbf{Col1} & \textbf{Col2} & \textbf{Col2} & \textbf{Col3} \\
+        \midrule
+        1             & 6             & 87837         & 787           \\
+        2             & 7             & 78            & 5415          \\
+        3             & 545           & 778           & 7507          \\
+        4             & 585           & 18744         & 7560          \\
+        5             & 88            & 788           & 6344          \\
+        \bottomrule
+    \end{tabular}
+    \label{table:example}
+\end{table}
+
+\end{document}
