@@ -13,7 +13,7 @@ Using shell script:
 Manually in terminal:
 
 ```shell
-lualatex --shell-escape --halt-on-error --interaction=nonstopmode --file-line-error "template.tex"
+lualatex --file-line-error --halt-on-error --interaction=nonstopmode "template.tex"
 ```
 
 ## Check available font features
