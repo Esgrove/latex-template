@@ -1,0 +1,620 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                           %%
+%%  Master's Thesis template for Hanken School of Economics  %%
+%%  Akseli Lukkarila                                         %%
+%%  2018-2023                                                %%
+%%                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Thesis info definitions
+\newcommand{\thesistitle}{Title Goes Here and Looks Like This When it Goes on Multiple Lines}
+\newcommand{\thesisauthor}{Ron Swanson}
+\newcommand{\thesislevel}{Master's Thesis}
+\newcommand{\thesisdate}{\monthname \space \the\year}
+\newcommand{\school}{Hanken School of Economics}
+\newcommand{\department}{Department of Parks}
+\newcommand{\degreeprogramme}{Master's Programme in Parks and Recreation}
+\newcommand{\supervisor}{Prof.~Leslie Knope}
+\newcommand{\keywords}{parks, recreation}
+
+% Document
+\documentclass[12pt, a4paper, oneside]{article}
+
+% Margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% Layout
+\usepackage[onehalfspacing]{setspace}           % Easy row spacing
+\usepackage[parfill]{parskip}                   % Blank line starts new paragraph
+\usepackage{blindtext}                          % Dummy text
+\usepackage{fancyhdr}                           % Better header and footer
+\usepackage{gensymb}                            % Generic symbols for both text and math mode
+\usepackage{lastpage}                           % Arabic numbered pages
+\usepackage{titlesec}                           % Adjust title and heading spacing
+\usepackage{verbatim}                           % Comment sections
+
+% Text
+\usepackage{csquotes}                           % Nice quotations
+\usepackage{gensymb}                            % Generic symbols for both text and math mode
+\usepackage{microtype}                          % Text kerning
+\usepackage{soul}                               % Provides hyphenatable spacing
+\usepackage{textcomp}                           % Text symbols
+\usepackage{xurl}                               % Break long urls over lines
+
+% Math
+\usepackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
+\usepackage{amsmath}                            % Math stuff
+
+% Tables, lists and figures
+\usepackage{booktabs}                           % Better looking tables
+\usepackage{enumitem}                           % Customized lists
+\usepackage{float}                              % Provides 'H' placement modifier
+\usepackage{graphicx}                           % External graphics
+\usepackage{multicol}                           % Multicolumn pages and lists
+\usepackage{multirow}                           % Table multirow columns
+\usepackage{ragged2e}                           % Override ragged commands locally
+\usepackage{tabularx}                           % Table sizing options
+
+% PDF setup and metadata
+\usepackage{colorprofiles}
+\usepackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
+
+% Colours
+\usepackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
+
+% Spelling
+% Alternative to babel for xelatex and lualatex
+% https://ctan.org/pkg/polyglossia
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+\setotherlanguages{finnish,swedish}
+% use \begin{finnish}...\end{finnish} or \textfinnish{} for non-english text
+
+% Date formatting
+% Have to load both packages for correct formatting with polyglossia
+\usepackage[dmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+\usepackage[datesep=.,style=ddmmyyyy]{datetime2}
+
+% Captions and subfigures
+\usepackage[
+    hang,
+    bf,
+    justification=justified,
+    format=plain,
+    labelfont={bf,it},      % title: bold italic
+    textfont=it,            % text:  italic
+    figurewithin=section,
+    tablewithin=section,
+]{caption}
+\usepackage[labelfont=normalfont,textfont=it]{subcaption}
+
+% Fonts
+\usepackage{fontspec}
+
+% Nice latex font in the style of Times New Roman
+\setmainfont{TeX Gyre Termes}
+\setmathfont{TeX Gyre Termes Math}
+
+% Tabular Figures (tnum) font feature for tables,
+% displays numerical digits (0–9) in the same width
+\AtBeginEnvironment{tabular}{
+    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+}
+\AtBeginEnvironment{tabularx}{
+    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+}
+
+% Loading custom fonts, either installed on system or from font files from path
+% Lining Figures (lnum) displays numbers in a uniform height,
+% which align with uppercase letters.
+%\setmainfont[Numbers=Lining]{GeorgiaPro}[
+%    %Path = ./font/,
+%    %Extension = .ttf,
+%    BoldFont = *-Bold,
+%    BoldItalicFont = *-BoldItalic,
+%    ItalicFont = *-Italic,
+%    UprightFont = *-Regular,
+%]
+
+%\AtBeginEnvironment{tabular}{
+%    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
+%        %Path = ./font/,
+%        %Extension = .ttf,
+%        BoldFont = *-Bold,
+%        BoldItalicFont = *-BoldItalic,
+%        ItalicFont = *-Italic,
+%        UprightFont = *-Regular,
+%    ]
+%}
+%\AtBeginEnvironment{tabularx}{
+%    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
+%        %Path = ./font/,
+%        %Extension = .ttf,
+%        BoldFont = *-Bold,
+%        BoldItalicFont = *-BoldItalic,
+%        ItalicFont = *-Italic,
+%        UprightFont = *-Regular,
+%    ]
+%}
+
+% Override title fonts
+% \newfontfamily\titlefont[Ligatures=TeX]{arial}
+%\titleformat*{\section}{\LARGE\titlefont}
+%\titleformat*{\subsection}{\Large\titlefont}
+%\titleformat*{\subsubsection}{\large\titlefont}
+
+% Path of graphics files
+\graphicspath{{./}{figures/}}
+
+%% Layout settings
+% Float settings
+\renewcommand{\floatpagefraction}{0.1}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+% Heading spacing
+%\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{12pt plus 2pt minus 2pt}
+%\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{8pt plus 2pt minus 2pt}
+%\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{8pt plus 2pt minus 2pt}
+
+% Text and float separation, plus and minus allow for streching when necessary
+\setlength{\textfloatsep}{18pt plus 1pt minus 2pt}
+\setlength{\intextsep}{12pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowcaptionskip}{6pt plus 2pt minus 2pt}
+
+% Header and footer
+\pagestyle{plain}
+
+% Paragraph breaks
+\setlength{\parindent}{0pt}                     % paragraph indentation
+\setlength{\parskip}{12pt plus 2pt minus 1pt}   % paragraph lineskip
+
+% Content levels
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%% Hyperref settings and pdf metadata
+\hypersetup{
+    breaklinks=true,
+    citecolor=black,
+    colorlinks=true,
+    linkcolor=black,
+    pdfauthor={\thesisauthor},
+    pdfkeywords={\keywords},
+    pdfpagemode=UseNone,
+    pdfstartview=FitH,
+    pdfsubject={\thesislevel},
+    pdftitle={\thesistitle},
+    pdftoolbar=false,
+    unicode,
+    urlcolor=NavyBlue,
+}
+
+%% References
+% Don't reorder options, sorting these will break settings :(
+\usepackage[
+    style=ext-authoryear,
+    backend=biber,
+    natbib=true,
+    sorting=anyt,
+    dashed=false,
+    sortcites=true,
+    giveninits,
+    uniquename=init,
+    maxnames=6,
+    minnames=6,
+    maxcitenames=3,
+    mincitenames=2,
+    urldate=comp,
+    articlein=false,
+]{biblatex}
+
+% Citing styles
+% https://www.overleaf.com/learn/latex/Biblatex_bibliography_styles
+% https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+
+\addbibresource{references.bib}
+
+\DefineBibliographyStrings{finnish}{andothers={ym\adddot}}
+\DeclareNameAlias{sortname}{family-given}
+
+% Spacing between references
+\setlength\bibitemsep{0.8\baselineskip}
+
+%% Custom commands
+
+% TODO macro
+% Comment out second line to disable comments
+\newcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{{\color{red} {#1} \par}}
+
+% Custom list for abbreviations
+\newlist{abbreviations}{itemize}{1}
+\setlist[abbreviations]{
+    font=\normalfont,
+    itemsep=0pt,
+    labelindent=5mm,
+    leftmargin=3cm,
+    parsep=0.5\baselineskip,
+    style=multiline,
+}
+
+\begin{document}
+
+% Roman page numbering for non-content pages
+\pagenumbering{Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE
+
+\begin{titlepage}
+    \newgeometry{top=4.5cm, bottom=2.5cm, right=3.3cm, left=3.3cm}
+    \centering
+    \includegraphics[width=4cm]{hanken_logo_platta}
+
+    \vspace{2cm}
+
+    % Uses Small Caps for title: https://en.wikipedia.org/wiki/Small_caps
+    % Rmeove '\scshape' for normal text or swap to \bfseries for bold
+    {\LARGE \scshape \thesistitle \par}
+
+    \vspace{2cm}
+
+    {\Large \thesisauthor \par}
+    \vfill
+    {
+        \normalsize
+        \department \\
+        \school \\
+        Helsinki \\
+        \the\year \par
+    }
+\end{titlepage}
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ABSTRACT
+
+\newgeometry{top=2.6cm, bottom=2.5cm, left=3cm, right=3cm}
+
+% do not count title page
+\setcounter{page}{1}
+
+\phantomsection
+\addcontentsline{toc}{section}{Abstract}
+
+{\LARGE \scshape Hanken School of Economics} \\ [-6mm]
+{\Large Abstract of the Master's Thesis \hfill \includegraphics[width=1.6cm]{hanken_logo_platta}} \\ [-4mm]
+
+\begin{table}[h]
+    \centering
+    \setlength\arrayrulewidth{0.7pt}
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabularx}{1\textwidth}{|p{8.5cm}|X|}
+        \hline
+        \textbf{Department:} \vspace{1mm} \newline \department & \textbf{Type of work:} \vspace{1mm} \newline Master's Thesis                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\[0.4cm] \hline
+        \textbf{Author:} \vspace{1mm} \newline \thesisauthor   & \textbf{Date:} \vspace{1mm} \newline \thesisdate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\[0.4cm]  \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Title of thesis:} \vspace{1mm} \newline Title Goes Here and Looks Like This When it Goes on Multiple Lines }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\[1.2cm] \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Abstract:} \vspace{1mm} \newline Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor. \newline \newline Mauris sed libero. Suspendisse facilisis nulla in lacinia laoreet, lorem velit accumsan velit vel mattis libero nisl et sem. Proin interdum maecenas massa turpis sagittis in, interdum non lobortis vitae massa. Quisque purus lectus, posuere eget imperdiet nec sodales id arcu. Vestibulum elit pede dictum eu, viverra non tincidunt eu ligula. Nam molestie nec tortor. Donec placerat leo sit amet velit. Vestibulum id justo ut vitae massa. Proin in dolor mauris consequat aliquam. Donec ipsum, vestibulum ullamcorper venenatis augue. Aliquam tempus nisi in auctor vulputate, erat felis pellentesque augue nec, pellentesque lectus justo nec erat. Aliquam et nisl. Quisque sit amet dolor in justo pretium condimentum.  } \\[13cm] \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Keywords:} \vspace{1mm} \newline \keywords}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\[1cm] \hline
+    \end{tabularx}
+\end{table}
+
+\restoregeometry
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ACKNOWLEDGEMENTS
+
+\normalsize
+\onehalfspacing
+
+\addcontentsline{toc}{section}{Acknowledgements}
+\section*{Acknowledgements} \label{sec:acknowledgements}
+
+I want to thank Professor Pirjo Professori and my instructor Dr. Alan Advisor for
+their good and poor guidance.
+
+\vspace{1cm}
+
+\begin{FlushRight}
+    Helsinki, 1.1.2019 \par
+    \thesisauthor
+\end{FlushRight}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CONTENTS
+
+%\singlespacing
+%\onehalfspacing
+\doublespacing
+
+\addcontentsline{toc}{section}{Contents}
+\tableofcontents
+
+\clearpage
+
+\listoffigures
+\listoftables
+
+\addcontentsline{toc}{section}{List of Figures}
+\addcontentsline{toc}{section}{List of Tables}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% ABBREVIATIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\singlespacing
+\onehalfspacing
+
+\phantomsection
+\addcontentsline{toc}{section}{Symbols and Abbreviations}
+
+\section*{Abbreviations} \label{sec:abbreviations}
+
+% Alternative with automatic linking and generation:
+% \usepackage[acronym]{glossaries}
+% \makeglossaries
+% \newacronym{flh}{FLH}{Finnish Lapphund}
+% \acrshort{flh}, \acrlong{flh}, \acrfull{flh}
+% \printglossary[type=\acronymtype]
+% https://www.overleaf.com/learn/latex/Glossaries
+
+% Without custom list type:
+% \begin{itemize}[style=multiline,leftmargin=3cm,font=\normalfont,itemsep=0pt,parsep=0.5\baselineskip,labelindent=5mm]
+\begin{abbreviations}
+    \item [ECVO]         European College of Veterinary Ophthalmologists
+    \item [FLH]          Finnish Lapphund
+    \item [GWAS]         Genome-wide association study
+    \item [HWE]          Hardy-Weinberg equilibrium
+    \item [IBD]          Identical by descent
+    \item [Indel]        Insertion and deletion
+\end{abbreviations}
+
+\section*{Symbols}
+
+\begin{abbreviations}
+    \item [$\mathbf{B}$]                magnetic flux density
+    \item [$c$]                         speed of light in vacuum $\approx 3\times10^8$ [m/s]
+    \item [$\omega_{\mathrm{D}}$]       Debye frequency
+    \item [$\omega_{\mathrm{latt}}$]    average phonon frequency of lattice
+\end{abbreviations}
+
+\section*{Operators}
+
+\begin{abbreviations}[style=multiline,leftmargin=3cm,font=\normalfont,itemsep=0pt,parsep=0.6\baselineskip,labelindent=5mm]
+    \item [$\nabla \times \mathbf{A}$]                      curl of vector $\mathbf{A}$
+    \item [$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$]      derivative with respect to variable $t$
+    \item [$\displaystyle\frac{\partial}{\partial t}$]      partial derivative with respect to variable $t$
+    \item [$\sum_i $]                                       sum over index $i$
+    \item [$\mathbf{A} \bullet \mathbf{B}$]                 dot product of vectors $\mathbf{A}$ and $\mathbf{B}$
+\end{abbreviations}
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 1 INTRO
+
+% Reset page numbering and spacing
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\onehalfspacing
+
+\section{Introduction} \label{sec:intro}
+
+% Note: You can write each section in a separate file and include them using
+% \input{1-introduction}  % file: 1-introduction.tex
+
+\blindtext
+\blinditemize
+\blindtext
+
+\subsection{Reference and citation example} \label{subsec:reference-and-citation-example}
+
+You can jump to section~\ref{sec:summary} directly from the number, which is the summary section,
+and to the reference directly from itself~\citep{vet2007ophthal},
+meaning the year or number depending on the bibliography style.
+
+\begin{comment}
+The tilde symbol used with the references is a "non-breaking space".
+This text won't be included in the document.
+\end{comment}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2 BACKGROUND
+
+\section{Background} \label{sec:background}
+
+\blindtext
+
+\LaTeX is great for equations, as can be seen in equation \ref{eq:probability}.
+\begin{equation} \label{eq:probability}
+    P(A | B) \ = \ \frac{P(B | A) \ P(A)}{P(B)}
+\end{equation}
+
+\subsection{Subsection with a dummy figure and table} \label{subsec:subsection-with-a-dummy-figure-and-table}
+
+Citation~\citep{hermanson2020anatomy, petersen2005advances}.
+\citet{petersen2005advances} can be cited also as part of the text,
+or just print the names \citeauthor{petersen2005advances} or the year~\citeyear{petersen2005advances}.
+Below is figure~\ref{fig:figure}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{hanken_logo_platta}
+    \caption[Dummy figure]{Dummy figure with a citation \citep{mellersh2014genetics}.}
+    \label{fig:figure}
+\end{figure}
+
+\blindtext[2]
+
+Table~\ref{tab:example} is on the top of the page. A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
+    You can change the link color in "hypersetup".} in text.
+
+\begin{table}[t]
+    \centering
+    \caption[Dummy table]{Dummy table with some random data taken from the Aalto University LaTeX template.}
+    \begin{tabularx}{\textwidth}{Xlll}
+        \toprule
+        \textbf{Parameter}      & \textbf{Exhaust air} & \textbf{Outdoor air} & \textbf{Heat wheel (80\%)} \\
+        \midrule
+        Heat recovery [\%]      & 89,6 \%              & 89,6 \%              & 77,4 \%                    \\
+        Real heat recovery [\%] & 50,5 \%              & 52,1 \%              & -                          \\
+        Net energy need         & 27,7                 & 27,0                 & 15,8                       \\
+        Delivered energy        & 31,1                 & 27,6                 & 45,6                       \\
+        \bottomrule
+    \end{tabularx}
+    \label{tab:example}
+\end{table}
+
+\subsection{Another subsection} \label{subsec:another-subsection}
+
+Here we have some subfigures side by side to demonstrate the captioning style settings in figure~\ref{fig:logos}.
+You can reference the subfigures independently too:~\ref{fig:blue} and~\ref{fig:red}.
+Some space before the figure can be added like this. \medskip
+
+\begin{figure}[h] % h = here, t = top, b = bottom, H = force here
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        % crop image -> trim={<left> <lower> <right> <upper>}
+        \includegraphics[trim={0cm 0cm 0cm 0cm}, clip, width=\textwidth]{cat}
+        \caption{kitty}
+        \label{fig:blue}
+    \end{subfigure}
+    % insert horizontal or vertical spacing here as desired, for example \hspace{-5mm} or \vspace{5mm}
+    % easy vertical spacing: \smallskip \medskip
+    \hspace{2mm}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[trim={0cm 0cm 0cm 0.73cm}, clip, width=\textwidth]{dog}
+        \caption{dogo}
+        \label{fig:red}
+    \end{subfigure}
+    \caption[Cat and dog]{Kitty and dogo. Much wow.}
+    \label{fig:logos}
+\end{figure}
+
+\begin{verbatim}
+    You can also use a newline with \\ or \newline to add vertical space.
+    Commands are not processed in this verbatim environment.
+\end{verbatim}
+
+\subsubsection{Sub-subsection}
+
+This and the following subsections \ref{subsubsec:another} and \ref{subsec:third-subsection} demostrate different lists.
+
+Itemize:
+\blinditemize
+
+\subsubsection{Another sub-subsection} \label{subsubsec:another}
+
+Enumerate:
+\blindenumerate
+
+\subsection{Third subsection} \label{subsec:third-subsection}
+
+Description:
+\blinddescription
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% METHODS
+
+\section{Methods} \label{sec:methods}
+
+Here is some lorem ipsum math stuff.
+
+\blindmathpaper
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ANALYSIS
+
+\section{Analysis} \label{sec:analysis}
+
+\blindtext[2]
+
+Check appendix \ref{appendix:extra} for one more figure.
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SUMMARY
+
+\section{Summary} \label{sec:summary}
+
+\blindtext[3]
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% REFERENCES
+
+% Show all bib entries
+% Remove this
+\nocite{*}
+
+\addcontentsline{toc}{section}{References}
+{
+    \interlinepenalty=10000
+    \raggedright
+    \printbibliography
+}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% APPENDIX
+
+\appendix
+\addcontentsline{toc}{section}{Appendix} \label{sec:appendix}
+
+% Use alphabetic numbering
+\renewcommand{\thesubsection}{\Alph{subsection}}
+
+% Reset figure and table counter
+\counterwithin{figure}{subsection}
+\counterwithin{table}{subsection}
+
+\newgeometry{top=2.5cm, bottom=2cm, left=2.5cm, right=2.5cm}
+
+\subsection{Some extra information} \label{appendix:extra}
+
+Some more dogos in figure~\ref{fig:dogos} in this appendix.
+
+\begin{figure}[h] % h = here, t = top, b = bottom, H = force here
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        % crop image -> trim={<left> <lower> <right> <upper>}
+        \includegraphics[trim={0.9cm 0cm 0.9cm 0.73cm}, clip, width=\textwidth]{dog}
+        \caption{dogo 1} \vspace{5mm}
+    \end{subfigure}
+    \hspace{6mm}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[trim={0.9cm 0cm 0.9cm 0.73cm}, clip, width=\textwidth]{dog}
+        \caption{dogo 2} \vspace{5mm}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \scalebox{1}[-1]{\includegraphics[trim={0.9cm 0cm 0.9cm 0.73cm}, clip, width=\textwidth]{dog}}
+        \caption{dogo 3: vertical flip}
+    \end{subfigure}
+    \hspace{6mm}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \scalebox{-1}[1]{\includegraphics[trim={0.9cm 0cm 0.9cm 0.73cm}, clip, width=\textwidth]{dog}}
+        \caption{dogo 4: horizontal flip}
+    \end{subfigure}
+    \caption[More dogs]{Wow, more dogos.}
+    \label{fig:dogos}
+\end{figure}
+
+\end{document}

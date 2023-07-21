@@ -12,6 +12,10 @@ OPTIONS: All options are optional
     -c | --clean
         Clean temporary files before building.
 
+    -f | --file <FILE.tex>
+        Specify tex file to compile.
+        Note: needs to be in same dir with this script.
+
     -n | --no-gs
         Skip Ghostscript compression step.
 
@@ -69,13 +73,9 @@ fi
 REPO_ROOT=$(git rev-parse --show-toplevel || (cd "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 OUTPUT_DIR="$REPO_ROOT/out"
 
-FILENAME="template"
-TEX_FILE="$REPO_ROOT/$FILENAME.tex"
-PDF_FILE="$REPO_ROOT/$FILENAME.pdf"
-PDF_FILE_WITH_DATE="$REPO_ROOT/$FILENAME $(date "+%d.%m.%Y").pdf"
-
 init_options() {
     COMPRESS=true
+    FILENAME="template"
     while [ $# -gt 0 ]; do
         case "$1" in
             -h | --help)
@@ -86,9 +86,14 @@ init_options() {
                 print_magenta "Cleaning files..."
                 git -C "$REPO_ROOT" clean -ndx
                 git -C "$REPO_ROOT" clean -fdx
+                rm -rf "$OUTPUT_DIR"
                 ;;
             -n | --no-gs)
                 COMPRESS=false
+                ;;
+            -f | --file)
+                FILENAME="${2%.*}"
+                shift
                 ;;
             -v | --verbose)
                 set -x
@@ -96,6 +101,10 @@ init_options() {
         esac
         shift
     done
+
+    TEX_FILE="$REPO_ROOT/$FILENAME.tex"
+    PDF_FILE="$REPO_ROOT/$FILENAME.pdf"
+    PDF_FILE_WITH_DATE="$REPO_ROOT/$FILENAME $(date "+%d.%m.%Y").pdf"
 }
 
 init_options "$@"
@@ -119,7 +128,14 @@ COMPILE_COMMAND=(
 )
 
 print_magenta "Compiling with LuaLaTex..."
-"${COMPILE_COMMAND[@]}" "$TEX_FILE"
+
+# Run Biber to process references
+if ! biber "$OUTPUT_DIR/$FILENAME"; then
+    "${COMPILE_COMMAND[@]}" "$TEX_FILE"
+    biber "$OUTPUT_DIR/$FILENAME"
+fi
+
+time "${COMPILE_COMMAND[@]}" "$TEX_FILE"
 mv "$OUTPUT_DIR/$FILENAME.pdf" "$PDF_FILE"
 print_green "$PDF_FILE"
 

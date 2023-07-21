@@ -4,10 +4,6 @@
 % Margins
 \RequirePackage[top=1.8cm, bottom=1.8cm, left=1.8cm, right=1.8cm]{geometry}
 
-% PDF setup and metadata
-\RequirePackage{colorprofiles}
-\RequirePackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
-
 % Layout
 \RequirePackage[onehalfspacing]{setspace}
 \RequirePackage[acronym]{glossaries}                % Abbreviations
@@ -32,6 +28,10 @@
 % Math
 \RequirePackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
 \RequirePackage{amsmath}                            % Math stuff
+
+% PDF setup and metadata
+\RequirePackage{colorprofiles}
+\RequirePackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
 
 % Colors
 \RequirePackage[luatex,rgb,svgnames,hyperref,table]{xcolor}
@@ -74,6 +74,7 @@
 
 % Fonts
 \RequirePackage{fontspec}
+\RequirePackage{tgtermes}
 
 %\RequirePackage[defaultfam,tabular,lining]{montserrat}
 
@@ -115,6 +116,14 @@
     ]
 }
 
+\AtBeginEnvironment{tabular}{
+    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+}
+\AtBeginEnvironment{tabularx}{
+    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+}
+
+\setmainfont{TeX Gyre Termes}
 \setmathfont{TeX Gyre Termes Math}
 \setmonofont{Roboto Mono}
 
