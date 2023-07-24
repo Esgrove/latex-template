@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                           %%
-%%  Master's Thesis template for Hanken School of Economics  %%
+%%  Master's Thesis template for Helsinki University         %%
 %%  Akseli Lukkarila                                         %%
 %%  2018-2023                                                %%
 %%                                                           %%
@@ -11,72 +11,74 @@
 \newcommand{\thesisauthor}{Ron Swanson}
 \newcommand{\thesislevel}{Master's Thesis}
 \newcommand{\thesisdate}{\monthname \space \the\year}
-\newcommand{\school}{Hanken School of Economics}
-\newcommand{\department}{Department of Parks}
+\newcommand{\faculty}{Faculty of Parks and Recreation}
 \newcommand{\degreeprogramme}{Master's Programme in Parks and Recreation}
+\newcommand{\studytrack}{Small Town Politics}
 \newcommand{\supervisor}{Prof.~Leslie Knope}
+\newcommand{\advisor}{Dr.~Ann Perkins}
 \newcommand{\keywords}{parks, recreation}
 
 % Document
 \documentclass[12pt, a4paper, oneside]{article}
 
-% Margins
-\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+%  Margins
+\RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 
 % Layout
-\usepackage[onehalfspacing]{setspace}           % Easy row spacing
-\usepackage[parfill]{parskip}                   % Blank line starts new paragraph
-\usepackage{blindtext}                          % Dummy text
-\usepackage{fancyhdr}                           % Better header and footer
-\usepackage{lastpage}                           % Arabic numbered pages
-\usepackage{titlesec}                           % Adjust title and heading spacing
-\usepackage{verbatim}                           % Comment sections
+\RequirePackage[onehalfspacing]{setspace}           % Easy row spacing
+\RequirePackage[parfill]{parskip}                   % Blank line starts new paragraph
+\RequirePackage{blindtext}                          % Dummy text
+\RequirePackage{fancyhdr}                           % Better header and footer
+\RequirePackage{lastpage}                           % Arabic numbered pages
+\RequirePackage{titlesec}                           % Adjust title and heading spacing
+\RequirePackage{verbatim}                           % Comment sections
 
 % Text
-\usepackage[style=british]{csquotes}            % Nice quotations
-\usepackage{gensymb}                            % Generic symbols for both text and math mode
-\usepackage{microtype}                          % Text kerning
-\usepackage{soul}                               % Provides hyphenatable spacing
-\usepackage{textcomp}                           % Text symbols
-\usepackage{xurl}                               % Break long urls over lines
+\RequirePackage{csquotes}                           % Nice quotations
+\RequirePackage{gensymb}                            % Generic symbols for both text and math mode
+\RequirePackage{microtype}                          % Text kerning
+\RequirePackage{soul}                               % Provides hyphenatable spacing
+\RequirePackage{textcomp}                           % Text symbols
+\RequirePackage{xurl}                               % Break long urls over lines
 
 % Math
-\usepackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
-\usepackage{amsmath}                            % Math stuff
+\RequirePackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
+\RequirePackage{amsmath}                            % Math stuff
 
 % Tables, lists and figures
-\usepackage{booktabs}                           % Better looking tables
-\usepackage{enumitem}                           % Customized lists
-\usepackage{float}                              % Provides 'H' placement modifier
-\usepackage{graphicx}                           % External graphics
-\usepackage{multicol}                           % Multicolumn pages and lists
-\usepackage{multirow}                           % Table multirow columns
-\usepackage{ragged2e}                           % Override ragged commands locally
-\usepackage{tabularx}                           % Table sizing options
+\RequirePackage{booktabs}                           % Better looking tables
+\RequirePackage{enumitem}                           % Customized lists
+\RequirePackage{float}                              % Provides 'H' placement modifier
+\RequirePackage{graphicx}                           % External graphics
+\RequirePackage{multicol}                           % Multicolumn pages and lists
+\RequirePackage{multirow}                           % Table multirow columns
+\RequirePackage{ragged2e}                           % Override ragged commands locally
+\RequirePackage{tabularx}                           % Table sizing options
 
 % PDF setup and metadata
-\usepackage{colorprofiles}
-\usepackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
+\RequirePackage{colorprofiles}
+\RequirePackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
 
 % Colours
-\usepackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
+\RequirePackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
 
-%% Spelling
+% Helsinki University brand blue
+\definecolor{hyblue}{RGB}{0, 155, 255}
+
+% Spelling
 % Alternative to babel for xelatex and lualatex
 % https://ctan.org/pkg/polyglossia
-\usepackage{polyglossia}
+\RequirePackage{polyglossia}
 \setdefaultlanguage[variant=british]{english}
-\setotherlanguages{finnish,swedish}
-% use \begin{finnish}...\end{finnish} or \textfinnish{} for non-english text
+\setotherlanguage{finnish}
 
-%% Date formatting
-% Have to load both packages for correct formatting with polyglossia
-\usepackage[dmyyyy]{datetime}
+% Date formatting
+\RequirePackage[dmyyyy]{datetime}
 \renewcommand{\dateseparator}{.}
-\usepackage[datesep=.,style=ddmmyyyy]{datetime2}
+\RequirePackage[datesep=.,style=ddmmyyyy]{datetime2}
 
-%% Captions and subfigures
-\usepackage[
+% Captions and subfigures
+\RequirePackage[
     hang,
     bf,
     justification=justified,
@@ -86,57 +88,48 @@
     figurewithin=section,
     tablewithin=section,
 ]{caption}
-\usepackage[labelfont=normalfont,textfont=it]{subcaption}
+\RequirePackage[labelfont=normalfont,textfont=it]{subcaption}
 
-%% Fonts
-\usepackage{fontspec}
+% Fonts
+\RequirePackage{fontspec}
 
-% Nice latex font in the style of Times New Roman
-\setmainfont{TeX Gyre Termes}
+%\setmainfont{TeX Gyre Termes}
 \setmathfont{TeX Gyre Termes Math}
 \setmonofont{inconsolata}
+
+% Lining Figures (lnum) displays numbers in a uniform height,
+% which align with uppercase letters.
+\setmainfont[Numbers=Lining]{GeorgiaPro}[
+    %Path = ./font/,
+    %Extension = .ttf,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    ItalicFont = *-Italic,
+    UprightFont = *-Regular,
+]
 
 % Tabular Figures (tnum) font feature for tables,
 % displays numerical digits (0–9) in the same width
 \AtBeginEnvironment{tabular}{
-    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
+        %Path = ./font/,
+        %Extension = .ttf,
+        BoldFont = *-Bold,
+        BoldItalicFont = *-BoldItalic,
+        ItalicFont = *-Italic,
+        UprightFont = *-Regular,
+    ]
 }
 \AtBeginEnvironment{tabularx}{
-    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
+        %Path = ./font/,
+        %Extension = .ttf,
+        BoldFont = *-Bold,
+        BoldItalicFont = *-BoldItalic,
+        ItalicFont = *-Italic,
+        UprightFont = *-Regular,
+    ]
 }
-
-% Loading custom fonts, either installed on system or from font files from path
-% Lining Figures (lnum) displays numbers in a uniform height,
-% which align with uppercase letters.
-%\setmainfont[Numbers=Lining]{GeorgiaPro}[
-%    %Path = ./font/,
-%    %Extension = .ttf,
-%    BoldFont = *-Bold,
-%    BoldItalicFont = *-BoldItalic,
-%    ItalicFont = *-Italic,
-%    UprightFont = *-Regular,
-%]
-
-%\AtBeginEnvironment{tabular}{
-%    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
-%        %Path = ./font/,
-%        %Extension = .ttf,
-%        BoldFont = *-Bold,
-%        BoldItalicFont = *-BoldItalic,
-%        ItalicFont = *-Italic,
-%        UprightFont = *-Regular,
-%    ]
-%}
-%\AtBeginEnvironment{tabularx}{
-%    \setmainfont[Numbers=Monospaced]{GeorgiaPro}[
-%        %Path = ./font/,
-%        %Extension = .ttf,
-%        BoldFont = *-Bold,
-%        BoldItalicFont = *-BoldItalic,
-%        ItalicFont = *-Italic,
-%        UprightFont = *-Regular,
-%    ]
-%}
 
 % Override title fonts
 % \newfontfamily\titlefont[Ligatures=TeX]{arial}
@@ -166,7 +159,12 @@
 \setlength{\belowcaptionskip}{6pt plus 2pt minus 2pt}
 
 % Header and footer
-\pagestyle{plain}
+\pagestyle{fancy}
+\fancyhf{}                                      % clear all header and footer fields
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{13pt}
 
 % Paragraph breaks
 \setlength{\parindent}{0pt}                     % paragraph indentation
@@ -176,7 +174,7 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
-%% Hyperref settings and pdf metadata
+% Hyperref settings and pdf metadata
 \hypersetup{
     breaklinks=true,
     citecolor=black,
@@ -190,12 +188,12 @@
     pdftitle={\thesistitle},
     pdftoolbar=false,
     unicode,
-    urlcolor=NavyBlue,
+    urlcolor=hyblue,
 }
 
 %% References
-% Don't reorder options, sorting these will break settings :(
-\usepackage[
+% Don't reorder, sorting these will break settings :(
+\RequirePackage[
     style=ext-authoryear,
     backend=biber,
     natbib=true,
@@ -255,35 +253,40 @@
 %% TITLE PAGE
 
 \begin{titlepage}
-    \newgeometry{top=4.5cm, bottom=2.5cm, right=3.3cm, left=3.3cm}
+    \newgeometry{top=3cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+    \includegraphics[width=8.8cm]{figures/hy_pysty}
+    \vspace{1cm}
     \centering
-    \includegraphics[width=4cm]{hanken_logo_platta}
 
-    \vspace{2cm}
-
-    % Uses Small Caps for title: https://en.wikipedia.org/wiki/Small_caps
-    % Rmeove '\scshape' for normal text or swap to \bfseries for bold
-    {\LARGE \scshape \thesistitle \par}
-
-    \vspace{2cm}
-
-    {\Large \thesisauthor \par}
+    {\Large \thesistitle \par}
+    % if you want to manually break the title for nicer formatting:
+    %{\Large Title Goes Here and Looks Like This \\ When it Goes on Multiple Lines \par}
     \vfill
+
+    \raggedleft
     {
-        \normalsize
-        \department \\
-        \school \\
-        Helsinki \\
-        \the\year \par
+        \normalsize \degreeprogramme \\
+        \studytrack~Study Track \\
+        \thesislevel \\ \vspace{1.3cm}
+
+        Author: \\
+        \thesisauthor \\ \vspace{1.3cm}
+
+        Supervisors: \\
+        \supervisor \\
+        \advisor \\ \vspace{1.3cm}
+
+        \today \\
+        Helsinki \par
     }
 \end{titlepage}
 
 \cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ABSTRACT
+%% ABSTRACT ENG
 
-\newgeometry{top=2.6cm, bottom=2.5cm, left=3cm, right=3cm}
+\newgeometry{top=1.25cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
 
 % do not count title page
 \setcounter{page}{1}
@@ -291,55 +294,122 @@
 \phantomsection
 \addcontentsline{toc}{section}{Abstract}
 
-{\LARGE \scshape Hanken School of Economics} \\ [-6mm]
-{\Large Abstract of the Master's Thesis \hfill \includegraphics[width=1.6cm]{hanken_logo_platta}} \\ [-4mm]
+\begin{small}
+    \singlespacing
+    \raggedbottom
+    \includegraphics[height=2.5cm]{figures/hy_vaaka}
 
-\begin{table}[h]
-    \centering
-    \setlength\arrayrulewidth{0.7pt}
-    \renewcommand{\arraystretch}{1.5}
-    \setlength{\tabcolsep}{8pt}
-    \begin{tabularx}{1\textwidth}{|p{8.5cm}|X|}
-        \hline
-        \textbf{Department:} \vspace{1mm} \newline \department & \textbf{Type of work:} \vspace{1mm} \newline \thesislevel \\ [0.4cm] \hline
-        \textbf{Author:} \vspace{1mm} \newline \thesisauthor   & \textbf{Date:} \vspace{1mm} \newline \thesisdate \\ [0.4cm] \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Title of thesis:} \vspace{1mm} \newline \thesistitle} \\ [1.2cm] \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{
-            \textbf{Abstract:} \vspace{1mm} \newline Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-            Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien.
-            Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.
-            Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti.
-            Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat.
-            Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede.
-            Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor. \newline \newline
-            Mauris sed libero. Suspendisse facilisis nulla in lacinia laoreet,
-            lorem velit accumsan velit vel mattis libero nisl et sem. Proin interdum maecenas massa turpis sagittis in,
-            interdum non lobortis vitae massa. Quisque purus lectus, posuere eget imperdiet nec sodales id arcu.
-            Vestibulum elit pede dictum eu, viverra non tincidunt eu ligula. Nam molestie nec tortor.
-            Donec placerat leo sit amet velit. Vestibulum id justo ut vitae massa.
-            Proin in dolor mauris consequat aliquam. Donec ipsum, vestibulum ullamcorper venenatis augue.
-            Aliquam tempus nisi in auctor vulputate, erat felis pellentesque augue nec,
-            pellentesque lectus justo nec erat. Aliquam et nisl. Quisque sit amet dolor in justo pretium condimentum.
-        } \\ [13cm] \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Keywords:} \vspace{1mm} \newline \keywords} \\ [1cm] \hline
-    \end{tabularx}
-    \label{tab:abstract}
-\end{table}
+    \begin{minipage}[t]{\textwidth}
+        \LARGE \textbf{Abstract}
+        \hfill
+    \end{minipage}
+    \begin{description}[style=multiline,leftmargin=4.7cm,itemsep=0pt,parsep=0.5\baselineskip]
+        \item [Faculty:]            \faculty
+        \item [Degree programme:]   \degreeprogramme
+        \item [Study track:]        \studytrack
+        \item [Author:]             \thesisauthor
+        \item [Title:]              \thesistitle
+        \item [Level:]              \thesislevel
+        \item [Month and year:]     \thesisdate
+        \item [Number of pages:]    \pageref*{LastPage}
+        \item [Keywords:]           \keywords
+        \item [Supervisors:]        \supervisor, \advisor
+        \item [Deposited:]          HELDA - Digital Repository of the University of Helsinki
+        \item [Abstract:]
+    \end{description}
 
-\restoregeometry
+    \begin{minipage}[ht]{\textwidth}
+        \vspace{-3mm}
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien.
+        Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.
+        Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti.
+        Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat.
+        Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede.
+        Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor. \\
+
+        Mauris sed libero. Suspendisse facilisis nulla in lacinia laoreet,
+        lorem velit accumsan velit vel mattis libero nisl et sem. Proin interdum maecenas massa turpis sagittis in,
+        interdum non lobortis vitae massa. Quisque purus lectus, posuere eget imperdiet nec sodales id arcu.
+        Vestibulum elit pede dictum eu, viverra non tincidunt eu ligula. Nam molestie nec tortor.
+        Donec placerat leo sit amet velit. Vestibulum id justo ut vitae massa. \\
+
+        Proin in dolor mauris consequat aliquam. Donec ipsum, vestibulum ullamcorper venenatis augue.
+        Aliquam tempus nisi in auctor vulputate, erat felis pellentesque augue nec,
+        pellentesque lectus justo nec erat. Aliquam et nisl. Quisque sit amet dolor in justo pretium condimentum.
+    \end{minipage}
+\end{small}
+
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ACKNOWLEDGEMENTS
+%% ABSTRACT FIN
+
+\phantomsection
+\addcontentsline{toc}{section}{Tiivistelmä}
+
+\begin{small}
+    \begin{finnish}
+        \singlespacing
+        \raggedbottom
+        \includegraphics[height=2.5cm]{figures/hy_vaaka}
+
+        \begin{minipage}{\textwidth}
+            \LARGE \textbf{Tiivistelmä}
+        \end{minipage}
+        \begin{description}[style=multiline,leftmargin=4.7cm,itemsep=0pt,parsep=0.5\baselineskip]
+            \item [Tiedekunta:]             Puistojen ja virkistyksen tiedekunta
+            \item [Koulutusohjelma:]        Puistojen ja virkistyksen maisteriohjelma
+            \item [Opintosuunta:]           Kyläpolitiikka
+            \item [Tekijä:]                 \thesisauthor
+            \item [Työn nimi:]              Suomenkielinen otsikko joka on kohtuullisen pitkä mutta ei kuitenkaan liian pitkä
+            \item [Työn laji:]              Maisterintutkielma
+            \item [Kuukausi ja vuosi:]      Kuukausi \the\year
+            \item [Sivumäärä:]              \pageref*{LastPage}
+            \item [Avainsanat:]             puistot, virkistys
+            \item [Ohjaajat:]               Professori Leslie Knope, FT Ann Perkins
+            \item [Säilytyspaikka:]         HELDA - Helsingin yliopiston digitaalinen arkisto
+            \item [Tiivistelmä:]
+        \end{description}
+
+        \begin{minipage}{\textwidth}
+            \vspace{-3mm}
+            \textfinnish{
+                Jukolan talo, eteläisessä Hämeessä, seisoo erään mäen pohjoisella rinteellä, liki Toukolan kylää.
+                Sen läheisin ympäristö on kivinen tanner, mutta alempana alkaa pellot, joissa, ennenkuin talo oli häviöön mennyt,
+                aaltoili teräinen vilja. Peltojen alla on niittu, apilaäyräinen, halkileikkaama monipolvisen ojan;
+                ja runsaasti antoi se heiniä, ennenkuin joutui laitumeksi kylän karjalle. \\
+
+                Muutoin on talolla avaria metsiä, soita ja erämaita, jotka, tämän tilustan ensimmäisen perustajan oivallisen toiminnan kautta,
+                olivat langenneet sille osaksi jo ison jaon käydessä entisinä aikoina.
+                Silloinpa Jukolan isäntä, pitäen enemmän huolta jälkeentulevainsa edusta kuin omasta parhaastansa,
+                otti vastaan osaksensa kulon polttaman metsän ja sai sillä keinolla seitsemän vertaa enemmän kuin toiset naapurinsa. \\
+
+                Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan.
+                - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan. \\
+
+                Veljesten nimet vanhimmasta nuorimpaan ovat: Juhani, Tuomas, Aapo, Simeoni, Timo, Lauri ja Eero.
+                Ovat heistä Tuomas ja Aapo kaksoispari ja samoin Timo ja Lauri. Juhanin, vanhimman veljen,
+                ikä on kaksikymmentä ja viisi vuotta, mutta Eero, nuorin heistä,
+                on tuskin nähnyt kahdeksantoista auringon kierrosta.
+            }
+        \end{minipage}
+    \end{finnish}
+\end{small}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \normalsize
 \onehalfspacing
 \restoregeometry
 
+% Section added manually to avoid a section number
 \addcontentsline{toc}{section}{Acknowledgements}
 \section*{Acknowledgements} \label{sec:acknowledgements}
 
-I want to thank Professor Leslie Knope and my instructor Dr. Ann Perkins for their good and poor guidance.
+I want to acknowledge CSC -- IT Center for Science, Finland, for providing computational resources.
 
 \vspace{1cm}
 \begin{FlushRight}
@@ -558,9 +628,9 @@ Here is some lorem ipsum math stuff.
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% ANALYSIS
+%% RESULTS
 
-\section{Analysis} \label{sec:analysis}
+\section{Results} \label{sec:analysis}
 
 Check appendix~\ref{appendix:extra} for one more figure.
 
@@ -569,9 +639,9 @@ Check appendix~\ref{appendix:extra} for one more figure.
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% SUMMARY
+%% DISCUSSION
 
-\section{Summary} \label{sec:summary}
+\section{Discussion} \label{sec:summary}
 
 \blindtext[3]
 
