@@ -74,9 +74,19 @@
 
 % Fonts
 \RequirePackage{fontspec}
-\RequirePackage{tgtermes}
 
+%\RequirePackage{tgtermes}
 %\RequirePackage[defaultfam,tabular,lining]{montserrat}
+
+% Nice latex font in the style of Times New Roman
+%\setmainfont{TeX Gyre Termes}
+\setmathfont{TeX Gyre Termes Math}
+%\AtBeginEnvironment{tabular}{
+%    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+%}
+%\AtBeginEnvironment{tabularx}{
+%    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
+%}
 
 \newfontfamily\blackfont        [Ligatures=TeX]{Montserrat-Black}
 \newfontfamily\extraboldfont    [Ligatures=TeX]{Montserrat-ExtraBold}
@@ -116,15 +126,6 @@
     ]
 }
 
-\AtBeginEnvironment{tabular}{
-    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
-}
-\AtBeginEnvironment{tabularx}{
-    \setmainfont[Numbers=Monospaced]{TeX Gyre Termes}
-}
-
-\setmainfont{TeX Gyre Termes}
-\setmathfont{TeX Gyre Termes Math}
 \setmonofont{Roboto Mono}
 
 % Path of graphics files

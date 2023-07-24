@@ -535,7 +535,7 @@ This text won't be included in the document.
 Citation~\citep{hermanson2020anatomy, petersen2005advances}.
 \citet{petersen2005advances} can be cited also as part of the text,
 or just print the names \citeauthor{petersen2005advances} or the year~\citeyear{petersen2005advances}.
-Below is figure~\ref{fig:figure}.
+Below is figure~\ref{fig:figure}. \medskip
 
 \begin{figure}[h]
     \centering
@@ -633,6 +633,25 @@ Here is some lorem ipsum math stuff.
 \section{Results} \label{sec:analysis}
 
 Check appendix~\ref{appendix:extra} for one more figure.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{16pt}
+    \caption[Example table]{Example table with tabular numbers}
+    \begin{tabular}{rrrr}
+        \toprule
+        \textbf{Col1} & \textbf{Col2} & \textbf{Col2} & \textbf{Col3} \\
+        \midrule
+        1             & 6             & 87837         & 787           \\
+        2             & 005           & 78            & 5415          \\
+        3             & 545           & 778           & 7507          \\
+        4             & 585           & 18744         & 7560          \\
+        5             & 88            & 0788          & 6344          \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:numbers}
+\end{table}
 
 \blindtext[2]
 

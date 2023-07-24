@@ -9,6 +9,9 @@ OPTIONS: All options are optional
     -h | --help
         Display these instructions.
 
+    -b | --biber
+        Run biber for bibliography.
+
     -c | --clean
         Clean temporary files before building.
 
@@ -18,6 +21,9 @@ OPTIONS: All options are optional
 
     -n | --no-gs
         Skip Ghostscript compression step.
+
+    -p | --process
+        Process all PDF figures with ghostscript.
 
     -v | --verbose
         Display commands being executed.
@@ -76,11 +82,16 @@ OUTPUT_DIR="$REPO_ROOT/out"
 init_options() {
     COMPRESS=true
     FILENAME="template"
+    PROCESS_FIGURES=false
+    RUN_BIBER=false
     while [ $# -gt 0 ]; do
         case "$1" in
             -h | --help)
                 echo "$USAGE"
                 exit 1
+                ;;
+            -b | --biber)
+                RUN_BIBER=true
                 ;;
             -c | --clean)
                 print_magenta "Cleaning files..."
@@ -94,6 +105,9 @@ init_options() {
             -f | --file)
                 FILENAME="${2%.*}"
                 shift
+                ;;
+            -p | --process)
+                PROCESS_FIGURES=true
                 ;;
             -v | --verbose)
                 set -x
@@ -113,6 +127,35 @@ cd "$REPO_ROOT"
 
 mkdir -p "$OUTPUT_DIR"
 
+if [ "$PROCESS_FIGURES" = true ]; then
+    print_magenta "Processing PDF figures..."
+    for filepath in figures/*.pdf; do
+        filename=$(basename "$filepath" .pdf)
+        if [[ "$filename" =~ .*"_convert" ]]; then
+            print_yellow "Skipping converted file $filename"
+            continue
+        fi
+        output_file="figures/${filename}_convert.pdf"
+        rm -f "$output_file"
+        echo "Processing $filename"
+        $GHOSTSCRIPT \
+            -dBATCH \
+            -dNOPAUSE \
+            -dNOSAFER \
+            -dPDFA=2 \
+            -dPDFACompatibilityPolicy=1 \
+            -dPDFSETTINGS=/prepress \
+            -dCompatibilityLevel=1.7 \
+            -dAutoRotatePages=/None \
+            -dEmbedAllFonts=true \
+            -sDEVICE=pdfwrite \
+            -sColorConversionStrategy=UseDeviceIndependentColor \
+            -sProcessColorModel=DeviceRGB \
+            -sOutputFile="figures/${filename}_convert.pdf" \
+            "$filepath"
+    done
+fi
+
 if [ -z "$(command -v lualatex)" ]; then
     print_error_and_exit "lualatex command not found in path"
 fi
@@ -130,9 +173,11 @@ COMPILE_COMMAND=(
 print_magenta "Compiling with LuaLaTex..."
 
 # Run Biber to process references
-if ! biber "$OUTPUT_DIR/$FILENAME"; then
-    "${COMPILE_COMMAND[@]}" "$TEX_FILE"
-    biber "$OUTPUT_DIR/$FILENAME"
+if [ "$RUN_BIBER" = true ]; then
+    if ! biber "$OUTPUT_DIR/$FILENAME"; then
+        "${COMPILE_COMMAND[@]}" "$TEX_FILE"
+        biber "$OUTPUT_DIR/$FILENAME"
+    fi
 fi
 
 time "${COMPILE_COMMAND[@]}" "$TEX_FILE"
