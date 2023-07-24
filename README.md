@@ -1,6 +1,6 @@
 # LaTeX template
 
-Modern LaTeX template for LuaTeX.
+Modern LaTeX doc template for LuaTeX.
 
 ## Compile
 
@@ -16,17 +16,6 @@ Manually in terminal:
 lualatex --file-line-error --halt-on-error --interaction=nonstopmode "template.tex"
 ```
 
-## Check available font features
-
-```shell
-otfinfo --features <font>
-otfinfo -f <font>
-
-# for example
-otfinfo -f ./Inter-Regular.ttf
-otfinfo -f ~/Library/Fonts/Montserrat-Regular.ttf
-```
-
 ## Format reference file
 
 ```shell
@@ -38,4 +27,15 @@ biber \
     --sortlocale en-GB \
     --output_file=references.bib \
     references.bib
+```
+
+## Check available font features
+
+```shell
+otfinfo --features <font>
+otfinfo -f <font>
+
+# for example
+otfinfo -f ./Inter-Regular.ttf
+otfinfo -f ~/Library/Fonts/Montserrat-Regular.ttf
 ```
