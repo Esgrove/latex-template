@@ -30,5 +30,12 @@ otfinfo -f ~/Library/Fonts/Montserrat-Regular.ttf
 ## Format reference file
 
 ```shell
-biber --tool --output_align --output_indent=4 --output_fieldcase=lower --sortlocale en-GB references.bib
+biber \
+    --tool \
+    --output_align \
+    --output_indent=4 \
+    --output_fieldcase=lower \
+    --sortlocale en-GB \
+    --output_file=references.bib \
+    references.bib
 ```
