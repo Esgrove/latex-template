@@ -1,8 +1,18 @@
 # LaTeX template
 
-Modern LaTeX doc template for LuaTeX.
+Modern LaTeX doc template for LuaTeX and [fontspec](https://github.com/latex3/fontspec/),
+which enables using normal OpenType and TrueType fonts.
 
-## Compile
+I have also included Master's Thesis templates for the University of Helsinki and Hanken School of Economics.
+These try to follow the thesis guidelines for the respective schools quite closely.
+I created them originally for people close to me when they were writing a thesis in these universities.
+Both of them have the same example content here with some basic demonstration of how to work with LaTeX.
+
+## Basic template
+
+[template.tex](./template.tex)
+
+### Compile
 
 Using shell script:
 
@@ -16,7 +26,23 @@ Manually in terminal:
 lualatex --file-line-error --halt-on-error --interaction=nonstopmode "template.tex"
 ```
 
-## Format reference file
+## University of Helsinki thesis
+
+[Helsinki-thesis.tex](./Helsinki-thesis.tex) and example bibliography in [references.bib](./references.bib).
+
+```shell
+./build.sh -b -f Helsinki-thesis.tex
+```
+
+## Hanken School of Economics thesis
+
+[Hanken-thesis.tex](./Hanken-thesis.tex) and example bibliography in [references.bib](./references.bib).
+
+```shell
+./build.sh -b -f Hanken-thesis.tex
+```
+
+## Format bibliography file
 
 ```shell
 biber \
@@ -29,7 +55,7 @@ biber \
     references.bib
 ```
 
-## Check available font features
+## Check available OpenType font features
 
 ```shell
 otfinfo --features <font>
