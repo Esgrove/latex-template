@@ -28,13 +28,12 @@
 \usepackage[parfill]{parskip}                   % Blank line starts new paragraph
 \usepackage{blindtext}                          % Dummy text
 \usepackage{fancyhdr}                           % Better header and footer
-\usepackage{gensymb}                            % Generic symbols for both text and math mode
 \usepackage{lastpage}                           % Arabic numbered pages
 \usepackage{titlesec}                           % Adjust title and heading spacing
 \usepackage{verbatim}                           % Comment sections
 
 % Text
-\usepackage{csquotes}                           % Nice quotations
+\usepackage[style=british]{csquotes}            % Nice quotations
 \usepackage{gensymb}                            % Generic symbols for both text and math mode
 \usepackage{microtype}                          % Text kerning
 \usepackage{soul}                               % Provides hyphenatable spacing
@@ -210,6 +209,7 @@
     mincitenames=2,
     urldate=comp,
     articlein=false,
+    sortlocale=en-GB,
 ]{biblatex}
 
 % Citing styles
@@ -218,7 +218,7 @@
 
 \addbibresource{references.bib}
 
-\DefineBibliographyStrings{finnish}{andothers={ym\adddot}}
+%\DefineBibliographyStrings{finnish}{andothers={ym\adddot}}
 \DeclareNameAlias{sortname}{family-given}
 
 % Spacing between references
@@ -297,12 +297,29 @@
     \setlength{\tabcolsep}{8pt}
     \begin{tabularx}{1\textwidth}{|p{8.5cm}|X|}
         \hline
-        \textbf{Department:} \vspace{1mm} \newline \department & \textbf{Type of work:} \vspace{1mm} \newline Master's Thesis                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \\[0.4cm] \hline
-        \textbf{Author:} \vspace{1mm} \newline \thesisauthor   & \textbf{Date:} \vspace{1mm} \newline \thesisdate                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\[0.4cm]  \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Title of thesis:} \vspace{1mm} \newline Title Goes Here and Looks Like This When it Goes on Multiple Lines }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\[1.2cm] \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Abstract:} \vspace{1mm} \newline Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien. Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit. Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti. Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat. Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede. Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor. \newline \newline Mauris sed libero. Suspendisse facilisis nulla in lacinia laoreet, lorem velit accumsan velit vel mattis libero nisl et sem. Proin interdum maecenas massa turpis sagittis in, interdum non lobortis vitae massa. Quisque purus lectus, posuere eget imperdiet nec sodales id arcu. Vestibulum elit pede dictum eu, viverra non tincidunt eu ligula. Nam molestie nec tortor. Donec placerat leo sit amet velit. Vestibulum id justo ut vitae massa. Proin in dolor mauris consequat aliquam. Donec ipsum, vestibulum ullamcorper venenatis augue. Aliquam tempus nisi in auctor vulputate, erat felis pellentesque augue nec, pellentesque lectus justo nec erat. Aliquam et nisl. Quisque sit amet dolor in justo pretium condimentum.  } \\[13cm] \hline
-        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Keywords:} \vspace{1mm} \newline \keywords}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\[1cm] \hline
+        \textbf{Department:} \vspace{1mm} \newline \department & \textbf{Type of work:} \vspace{1mm} \newline \thesislevel \\ [0.4cm] \hline
+        \textbf{Author:} \vspace{1mm} \newline \thesisauthor   & \textbf{Date:} \vspace{1mm} \newline \thesisdate \\ [0.4cm] \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Title of thesis:} \vspace{1mm} \newline \thesistitle} \\ [1.2cm] \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr3\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{
+            \textbf{Abstract:} \vspace{1mm} \newline Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+            Sed posuere interdum sem. Quisque ligula eros ullamcorper quis, lacinia quis facilisis sed sapien.
+            Mauris varius diam vitae arcu. Sed arcu lectus auctor vitae, consectetuer et venenatis eget velit.
+            Sed augue orci, lacinia eu tincidunt et eleifend nec lacus. Donec ultricies nisl ut felis, suspendisse potenti.
+            Lorem ipsum ligula ut hendrerit mollis, ipsum erat vehicula risus, eu suscipit sem libero nec erat.
+            Aliquam erat volutpat. Sed congue augue vitae neque. Nulla consectetuer porttitor pede.
+            Fusce purus morbi tortor magna condimentum vel, placerat id blandit sit amet tortor. \newline \newline
+            Mauris sed libero. Suspendisse facilisis nulla in lacinia laoreet,
+            lorem velit accumsan velit vel mattis libero nisl et sem. Proin interdum maecenas massa turpis sagittis in,
+            interdum non lobortis vitae massa. Quisque purus lectus, posuere eget imperdiet nec sodales id arcu.
+            Vestibulum elit pede dictum eu, viverra non tincidunt eu ligula. Nam molestie nec tortor.
+            Donec placerat leo sit amet velit. Vestibulum id justo ut vitae massa.
+            Proin in dolor mauris consequat aliquam. Donec ipsum, vestibulum ullamcorper venenatis augue.
+            Aliquam tempus nisi in auctor vulputate, erat felis pellentesque augue nec,
+            pellentesque lectus justo nec erat. Aliquam et nisl. Quisque sit amet dolor in justo pretium condimentum.
+        } \\ [13cm] \hline
+        \multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Keywords:} \vspace{1mm} \newline \keywords} \\ [1cm] \hline
     \end{tabularx}
+    \label{tab:abstract}
 \end{table}
 
 \restoregeometry
@@ -317,11 +334,9 @@
 \addcontentsline{toc}{section}{Acknowledgements}
 \section*{Acknowledgements} \label{sec:acknowledgements}
 
-I want to thank Professor Pirjo Professori and my instructor Dr. Alan Advisor for
-their good and poor guidance.
+I want to thank Professor Leslie Knope and my instructor Dr. Ann Perkins for their good and poor guidance.
 
 \vspace{1cm}
-
 \begin{FlushRight}
     Helsinki, 1.1.2019 \par
     \thesisauthor
@@ -375,26 +390,25 @@ their good and poor guidance.
     \item [GWAS]         Genome-wide association study
     \item [HWE]          Hardy-Weinberg equilibrium
     \item [IBD]          Identical by descent
-    \item [Indel]        Insertion and deletion
 \end{abbreviations}
 
 \section*{Symbols}
 
 \begin{abbreviations}
-    \item [$\mathbf{B}$]                magnetic flux density
-    \item [$c$]                         speed of light in vacuum $\approx 3\times10^8$ [m/s]
+    \item [$\mathbf{B}$]                Magnetic flux density
+    \item [$c$]                         Speed of light in vacuum $\approx 3\times10^8$ [m/s]
     \item [$\omega_{\mathrm{D}}$]       Debye frequency
-    \item [$\omega_{\mathrm{latt}}$]    average phonon frequency of lattice
+    \item [$\omega_{\mathrm{latt}}$]    Average phonon frequency of lattice
 \end{abbreviations}
 
 \section*{Operators}
 
 \begin{abbreviations}[style=multiline,leftmargin=3cm,font=\normalfont,itemsep=0pt,parsep=0.6\baselineskip,labelindent=5mm]
-    \item [$\nabla \times \mathbf{A}$]                      curl of vector $\mathbf{A}$
-    \item [$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$]      derivative with respect to variable $t$
-    \item [$\displaystyle\frac{\partial}{\partial t}$]      partial derivative with respect to variable $t$
-    \item [$\sum_i $]                                       sum over index $i$
-    \item [$\mathbf{A} \bullet \mathbf{B}$]                 dot product of vectors $\mathbf{A}$ and $\mathbf{B}$
+    \item [$\nabla \times \mathbf{A}$]                    Curl of vector $\mathbf{A}$
+    \item [$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$]    Derivative with respect to variable $t$
+    \item [$\displaystyle\frac{\partial}{\partial t}$]    Partial derivative with respect to variable $t$
+    \item [$\sum_i $]                                     Sum over index $i$
+    \item [$\mathbf{A} \bullet \mathbf{B}$]               Dot product of vectors $\mathbf{A}$ and $\mathbf{B}$
 \end{abbreviations}
 
 \cleardoublepage
@@ -436,7 +450,7 @@ This text won't be included in the document.
 
 \blindtext
 
-\LaTeX is great for equations, as can be seen in equation \ref{eq:probability}.
+\LaTeX~is great for equations, as can be seen in equation~\ref{eq:probability}.
 \begin{equation} \label{eq:probability}
     P(A | B) \ = \ \frac{P(B | A) \ P(A)}{P(B)}
 \end{equation}
@@ -457,7 +471,8 @@ Below is figure~\ref{fig:figure}.
 
 \blindtext[2]
 
-Table~\ref{tab:example} is on the top of the page. A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
+Table~\ref{tab:example} is on the top of the page.
+A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
     You can change the link color in "hypersetup".} in text.
 
 \begin{table}[t]
@@ -509,7 +524,7 @@ Some space before the figure can be added like this. \medskip
 
 \subsubsection{Sub-subsection}
 
-This and the following subsections \ref{subsubsec:another} and \ref{subsec:third-subsection} demostrate different lists.
+This and the following subsections~\ref{subsubsec:another} and~\ref{subsec:third-subsection} demostrate different lists.
 
 Itemize:
 \blinditemize
@@ -542,9 +557,9 @@ Here is some lorem ipsum math stuff.
 
 \section{Analysis} \label{sec:analysis}
 
-\blindtext[2]
+Check appendix~\ref{appendix:extra} for one more figure.
 
-Check appendix \ref{appendix:extra} for one more figure.
+\blindtext[2]
 
 \clearpage
 
@@ -590,7 +605,7 @@ Check appendix \ref{appendix:extra} for one more figure.
 
 \subsection{Some extra information} \label{appendix:extra}
 
-Some more dogos in figure~\ref{fig:dogos} in this appendix.
+Some more dogos in figure~\ref{fig:dogos} in this appendix. \medskip
 
 \begin{figure}[h] % h = here, t = top, b = bottom, H = force here
     \centering
