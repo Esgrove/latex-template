@@ -22,63 +22,65 @@
 \documentclass[12pt, a4paper, oneside]{article}
 
 %  Margins
-\RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 
 % Layout
-\RequirePackage[onehalfspacing]{setspace}           % Easy row spacing
-\RequirePackage[parfill]{parskip}                   % Blank line starts new paragraph
-\RequirePackage{blindtext}                          % Dummy text
-\RequirePackage{fancyhdr}                           % Better header and footer
-\RequirePackage{lastpage}                           % Arabic numbered pages
-\RequirePackage{titlesec}                           % Adjust title and heading spacing
-\RequirePackage{verbatim}                           % Comment sections
+\usepackage[onehalfspacing]{setspace}           % Easy row spacing
+\usepackage[parfill]{parskip}                   % Blank line starts new paragraph
+\usepackage{blindtext}                          % Dummy text
+\usepackage{fancyhdr}                           % Better header and footer
+\usepackage{lastpage}                           % Arabic numbered pages
+\usepackage{ragged2e}                           % Override ragged commands locally
+\usepackage{titlesec}                           % Adjust title and heading spacing
+\usepackage{verbatim}                           % Comment sections
 
 % Text
-\RequirePackage{csquotes}                           % Nice quotations
-\RequirePackage{gensymb}                            % Generic symbols for both text and math mode
-\RequirePackage{microtype}                          % Text kerning
-\RequirePackage{soul}                               % Provides hyphenatable spacing
-\RequirePackage{textcomp}                           % Text symbols
-\RequirePackage{xurl}                               % Break long urls over lines
+\usepackage{csquotes}                           % Nice quotations
+\usepackage{gensymb}                            % Generic symbols for both text and math mode
+\usepackage{microtype}                          % Text kerning
+\usepackage{soul}                               % Provides hyphenatable spacing
+\usepackage{textcomp}                           % Text symbols
+\usepackage{xurl}                               % Break long urls over lines
 
 % Math
-\RequirePackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
-\RequirePackage{amsmath}                            % Math stuff
-
-% Tables, lists and figures
-\RequirePackage{booktabs}                           % Better looking tables
-\RequirePackage{enumitem}                           % Customized lists
-\RequirePackage{float}                              % Provides 'H' placement modifier
-\RequirePackage{graphicx}                           % External graphics
-\RequirePackage{multicol}                           % Multicolumn pages and lists
-\RequirePackage{multirow}                           % Table multirow columns
-\RequirePackage{ragged2e}                           % Override ragged commands locally
-\RequirePackage{tabularx}                           % Table sizing options
+\usepackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
+\usepackage{amsmath}                            % Math stuff
 
 % PDF setup and metadata
-\RequirePackage{colorprofiles}
-\RequirePackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
+\usepackage{colorprofiles}
+\usepackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
 
-% Colours
-\RequirePackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
+% Tables, lists and figures
+\usepackage{booktabs}                           % Better looking tables
+\usepackage{enumitem}                           % Customized lists
+\usepackage{float}                              % Provides 'H' placement modifier
+\usepackage{graphicx}                           % External graphics
+\usepackage{multicol}                           % Multicolumn pages and lists
+\usepackage{multirow}                           % Table multirow columns
+\usepackage{tabularx}                           % Table sizing options
+
+% Colours and graphics
+\usepackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
+\usepackage{tikz}
 
 % Helsinki University brand blue
 \definecolor{hyblue}{RGB}{0, 155, 255}
 
-% Spelling
+%% Spelling
 % Alternative to babel for xelatex and lualatex
 % https://ctan.org/pkg/polyglossia
-\RequirePackage{polyglossia}
+\usepackage{polyglossia}
 \setdefaultlanguage[variant=british]{english}
 \setotherlanguage{finnish}
+% use \begin{finnish}...\end{finnish} or \textfinnish{} for non-english text
 
 % Date formatting
-\RequirePackage[dmyyyy]{datetime}
+\usepackage[dmyyyy]{datetime}
 \renewcommand{\dateseparator}{.}
-\RequirePackage[datesep=.,style=ddmmyyyy]{datetime2}
+\usepackage[datesep=.,style=ddmmyyyy]{datetime2}
 
 % Captions and subfigures
-\RequirePackage[
+\usepackage[
     hang,
     bf,
     justification=justified,
@@ -88,10 +90,10 @@
     figurewithin=section,
     tablewithin=section,
 ]{caption}
-\RequirePackage[labelfont=normalfont,textfont=it]{subcaption}
+\usepackage[labelfont=normalfont,textfont=it]{subcaption}
 
-% Fonts
-\RequirePackage{fontspec}
+%% Fonts
+\usepackage{fontspec}
 
 %\setmainfont{TeX Gyre Termes}
 \setmathfont{TeX Gyre Termes Math}
@@ -193,7 +195,7 @@
 
 %% References
 % Don't reorder, sorting these will break settings :(
-\RequirePackage[
+\usepackage[
     style=ext-authoryear,
     backend=biber,
     natbib=true,
@@ -478,7 +480,7 @@ I want to acknowledge CSC -- IT Center for Science, Finland, for providing compu
 
 \section*{Operators}
 
-\begin{abbreviations}[style=multiline,leftmargin=3cm,font=\normalfont,itemsep=0pt,parsep=0.6\baselineskip,labelindent=5mm]
+\begin{abbreviations}
     \item [$\nabla \times \mathbf{A}$]                    Curl of vector $\mathbf{A}$
     \item [$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$]    Derivative with respect to variable $t$
     \item [$\displaystyle\frac{\partial}{\partial t}$]    Partial derivative with respect to variable $t$
@@ -535,7 +537,10 @@ This text won't be included in the document.
 Citation~\citep{hermanson2020anatomy, petersen2005advances}.
 \citet{petersen2005advances} can be cited also as part of the text,
 or just print the names \citeauthor{petersen2005advances} or the year~\citeyear{petersen2005advances}.
-Below is figure~\ref{fig:figure}. \medskip
+A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
+    You can change the link color in "hypersetup".} in text.
+Below is a simple example figure~\ref{fig:figure}.
+Table~\ref{tab:example} is on the top of the next page.
 
 \begin{figure}[h]
     \centering
@@ -546,13 +551,9 @@ Below is figure~\ref{fig:figure}. \medskip
 
 \blindtext[2]
 
-Table~\ref{tab:example} is on the top of the page.
-A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
-    You can change the link color in "hypersetup".} in text.
-
 \begin{table}[t]
     \centering
-    \caption[Dummy table]{Dummy table with some random data taken from the Aalto University LaTeX template.}
+    \caption[Dummy table]{Dummy table with some random data.}
     \begin{tabularx}{\textwidth}{Xlll}
         \toprule
         \textbf{Parameter}      & \textbf{Exhaust air} & \textbf{Outdoor air} & \textbf{Heat wheel (80\%)} \\
@@ -653,7 +654,25 @@ Check appendix~\ref{appendix:extra} for one more figure.
     \label{tab:numbers}
 \end{table}
 
-\blindtext[2]
+\blindtext
+
+Here is an example of \href{https://www.overleaf.com/learn/latex/TikZ_package}{tikz} graphics: \medskip
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[xscale=1.4]
+        \draw [very thick] (0,0) -- (10,0);         % horizontal line
+        \draw [thick] (0,-.25) -- (0, .25);         % four vertical lines
+        \draw [thick] (2.5,-.25) -- (2.5, .25);
+        \draw [thick] (7.5,-.25) -- (7.5, .25);
+        \draw [thick] (10,-.25) -- (10, .25);
+        \node[align=center, below] at (1.25,-.35) {intro part};
+        \node[align=center, below] at (5,-.35) {middle part};
+        \node[align=center, below] at (8.75,-.35) {outro part};
+    \end{tikzpicture}
+    \label{fig:tikz}
+    \caption[tikz graphics]{Example tikz graphic, which is useful for simple illustrations.}
+\end{figure}
 
 \clearpage
 
@@ -686,7 +705,7 @@ Check appendix~\ref{appendix:extra} for one more figure.
 %% APPENDIX
 
 \appendix
-\addcontentsline{toc}{section}{Appendix} \label{sec:appendix}
+\addcontentsline{toc}{section}{Appendices} \label{sec:appendix}
 
 % Use alphabetic numbering
 \renewcommand{\thesubsection}{\Alph{subsection}}

@@ -29,6 +29,7 @@
 \usepackage{blindtext}                          % Dummy text
 \usepackage{fancyhdr}                           % Better header and footer
 \usepackage{lastpage}                           % Arabic numbered pages
+\usepackage{ragged2e}                           % Override ragged commands locally
 \usepackage{titlesec}                           % Adjust title and heading spacing
 \usepackage{verbatim}                           % Comment sections
 
@@ -44,6 +45,10 @@
 \usepackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
 \usepackage{amsmath}                            % Math stuff
 
+% PDF setup and metadata
+\usepackage{colorprofiles}
+\usepackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
+
 % Tables, lists and figures
 \usepackage{booktabs}                           % Better looking tables
 \usepackage{enumitem}                           % Customized lists
@@ -51,23 +56,19 @@
 \usepackage{graphicx}                           % External graphics
 \usepackage{multicol}                           % Multicolumn pages and lists
 \usepackage{multirow}                           % Table multirow columns
-\usepackage{ragged2e}                           % Override ragged commands locally
 \usepackage{tabularx}                           % Table sizing options
 
-% PDF setup and metadata
-\usepackage{colorprofiles}
-\usepackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
-
-% Colours
+% Colours and graphics
 \usepackage[luatex,rgb,dvipsnames,hyperref,table]{xcolor}
+\usepackage{tikz}
 
 %% Spelling
 % Alternative to babel for xelatex and lualatex
 % https://ctan.org/pkg/polyglossia
 \usepackage{polyglossia}
 \setdefaultlanguage[variant=british]{english}
-\setotherlanguages{finnish,swedish}
-% use \begin{finnish}...\end{finnish} or \textfinnish{} for non-english text
+\setotherlanguages{swedish}
+% use \begin{swedish}...\end{swedish} or \textswedish{} for non-english text
 
 %% Date formatting
 % Have to load both packages for correct formatting with polyglossia
@@ -408,7 +409,7 @@ I want to thank Professor Leslie Knope and my instructor Dr. Ann Perkins for the
 
 \section*{Operators}
 
-\begin{abbreviations}[style=multiline,leftmargin=3cm,font=\normalfont,itemsep=0pt,parsep=0.6\baselineskip,labelindent=5mm]
+\begin{abbreviations}
     \item [$\nabla \times \mathbf{A}$]                    Curl of vector $\mathbf{A}$
     \item [$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$]    Derivative with respect to variable $t$
     \item [$\displaystyle\frac{\partial}{\partial t}$]    Partial derivative with respect to variable $t$
@@ -465,7 +466,10 @@ This text won't be included in the document.
 Citation~\citep{hermanson2020anatomy, petersen2005advances}.
 \citet{petersen2005advances} can be cited also as part of the text,
 or just print the names \citeauthor{petersen2005advances} or the year~\citeyear{petersen2005advances}.
-Below is figure~\ref{fig:figure}.
+A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
+    You can change the link color in "hypersetup".} in text.
+Below is a simple example figure~\ref{fig:figure}.
+Table~\ref{tab:example} is on the top of the next page.
 
 \begin{figure}[h]
     \centering
@@ -476,13 +480,9 @@ Below is figure~\ref{fig:figure}.
 
 \blindtext[2]
 
-Table~\ref{tab:example} is on the top of the page.
-A footnote displaying how to include urls\footnote{Like this \url{www.google.fi} or fancier \href{www.google.fi}{Google}.
-    You can change the link color in "hypersetup".} in text.
-
 \begin{table}[t]
     \centering
-    \caption[Dummy table]{Dummy table with some random data taken from the Aalto University LaTeX template.}
+    \caption[Dummy table]{Dummy table with some random data.}
     \begin{tabularx}{\textwidth}{Xlll}
         \toprule
         \textbf{Parameter}      & \textbf{Exhaust air} & \textbf{Outdoor air} & \textbf{Heat wheel (80\%)} \\
@@ -583,7 +583,25 @@ Check appendix~\ref{appendix:extra} for one more figure.
     \label{tab:numbers}
 \end{table}
 
-\blindtext[2]
+\blindtext
+
+Here is an example of \href{https://www.overleaf.com/learn/latex/TikZ_package}{tikz} graphics: \medskip
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[xscale=1.4]
+        \draw [very thick] (0,0) -- (10,0);
+        \draw [thick] (0,-.25) -- (0, .25);
+        \draw [thick] (2.5,-.25) -- (2.5, .25);
+        \draw [thick] (7.5,-.25) -- (7.5, .25);
+        \draw [thick] (10,-.25) -- (10, .25);
+        \node[align=center, below] at (1.25,-.35) {Intro part};
+        \node[align=center, below] at (5,-.35) {Middle part};
+        \node[align=center, below] at (8.75,-.35) {Outro part};
+    \end{tikzpicture}
+    \label{fig:tikz}
+    \caption[tikz graphics]{Example tikz graphic, which is useful for simple illustrations.}
+\end{figure}
 
 \clearpage
 
@@ -616,7 +634,7 @@ Check appendix~\ref{appendix:extra} for one more figure.
 %% APPENDIX
 
 \appendix
-\addcontentsline{toc}{section}{Appendix} \label{sec:appendix}
+\addcontentsline{toc}{section}{Appendices} \label{sec:appendix}
 
 % Use alphabetic numbering
 \renewcommand{\thesubsection}{\Alph{subsection}}
@@ -629,7 +647,7 @@ Check appendix~\ref{appendix:extra} for one more figure.
 
 \subsection{Some extra information} \label{appendix:extra}
 
-Some more dogos in figure~\ref{fig:dogos} in this appendix. \medskip
+Some more dogs in figure~\ref{fig:dogos} in this appendix. \medskip
 
 \begin{figure}[h] % h = here, t = top, b = bottom, H = force here
     \centering
