@@ -14,7 +14,7 @@ Both of them have the same example content here with some basic demonstration of
 
 ### Compile
 
-Using shell script:
+Using the shell script:
 
 ```shell
 ./build.sh
@@ -26,7 +26,7 @@ Manually in terminal:
 lualatex --file-line-error --halt-on-error --interaction=nonstopmode "template.tex"
 ```
 
-## University of Helsinki thesis
+## University of Helsinki thesis template
 
 [Helsinki-thesis.tex](./Helsinki-thesis.tex) and example bibliography in [references.bib](./references.bib).
 
@@ -34,7 +34,7 @@ lualatex --file-line-error --halt-on-error --interaction=nonstopmode "template.t
 ./build.sh -b -f Helsinki-thesis.tex
 ```
 
-## Hanken School of Economics thesis
+## Hanken School of Economics thesis template
 
 [Hanken-thesis.tex](./Hanken-thesis.tex) and example bibliography in [references.bib](./references.bib).
 
