@@ -1,0 +1,169 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{esgrove}[2023/07/20 Esgrove's LaTeX configuration]
+
+\LoadClass[11pt, a4paper, oneside]{article}
+
+% Margins
+\RequirePackage[top=1.5cm, bottom=1.8cm, left=1.5cm, right=1.5cm]{geometry}
+
+% PDF setup and metadata
+\RequirePackage{colorprofiles}
+\RequirePackage[breaklinks, pdfa, pdfversion=1.7]{hyperref}
+
+% Layout
+\RequirePackage[onehalfspacing]{setspace}
+\RequirePackage[acronym]{glossaries}                % Abbreviations
+\RequirePackage[parfill]{parskip}                   % Blank line starts new paragraph
+\RequirePackage{blindtext}                          % Dummy text
+\RequirePackage{fancyhdr}                           % Better header and footer
+\RequirePackage{lastpage}                           % Get total page number
+\RequirePackage{ragged2e}                           % Override ragged commands locally
+\RequirePackage{titlesec}                           % Adjust title and heading spacing
+\RequirePackage{verbatim}                           % Comment sections
+
+% Text
+\RequirePackage{csquotes}                           % Nice quotations
+\RequirePackage{gensymb}                            % Generic symbols for both text and math mode
+\RequirePackage{metalogo}                           % Latex logo adjustment
+\RequirePackage{microtype}                          % Text kerning
+\RequirePackage{soul}                               % Provides hyphenatable spacing
+\RequirePackage{textcomp}                           % Text symbols
+\RequirePackage{units}                              % Nice fractions in text
+\RequirePackage{xurl}                               % Break long urls over lines
+
+% Math
+\RequirePackage{unicode-math}                       % Unicode mathematics support for XeTeX and LuaTeX
+\RequirePackage{amsmath}                            % Math stuff
+
+% Colors
+\RequirePackage[luatex,rgb,svgnames,hyperref,table]{xcolor}
+\RequirePackage[skins,breakable]{tcolorbox}
+
+% Tables, lists and figures
+\RequirePackage[inline]{enumitem}                   % Customized lists
+\RequirePackage{booktabs}                           % Better looking tables
+\RequirePackage{float}                              % Provides 'H' placement modifier
+\RequirePackage{graphicx}                           % External graphics
+\RequirePackage{multicol}                           % Multicolumn pages and lists
+\RequirePackage{multirow}                           % Table multirow columns
+\RequirePackage{tabularx}                           % Table sizing options
+\RequirePackage{tikz}                               % tikz graphics
+
+% Spelling
+% Alternative to babel for xelatex and lualatex
+% https://ctan.org/pkg/polyglossia
+\RequirePackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+\setotherlanguage{finnish}
+
+% Date formatting
+\RequirePackage[dmyyyy]{datetime}
+\renewcommand{\dateseparator}{.}
+\RequirePackage[datesep=.,style=ddmmyyyy]{datetime2}
+
+% Fonts
+\RequirePackage{fontspec}
+
+%\RequirePackage[defaultfam,tabular,lining]{montserrat}
+
+\newfontfamily\blackfont        [Ligatures=TeX]{Montserrat-Black}
+\newfontfamily\extraboldfont    [Ligatures=TeX]{Montserrat-ExtraBold}
+\newfontfamily\lightfont        [Ligatures=TeX]{Montserrat-Light}
+\newfontfamily\semiboldfont     [Ligatures=TeX]{Montserrat-SemiBold}
+
+\setmainfont[Ligatures=TeX]{Montserrat}[
+    %Path = ./font/,
+    %Extension = .ttf,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
+    ItalicFont = *-Italic,
+    UprightFont = *-Regular,
+]
+
+% Tabular Figures (tnum) font feature for tables,
+% displays numerical digits (0–9) in the same width
+\AtBeginEnvironment{tabular}{
+    \setmainfont[Numbers=Monospaced]{Montserrat}[
+        %Path = ./font/,
+        %Extension = .ttf,
+        BoldFont = *-Bold,
+        BoldItalicFont = *-BoldItalic,
+        ItalicFont = *-Italic,
+        UprightFont = *-Regular,
+    ]
+}
+\AtBeginEnvironment{tabularx}{
+    \setmainfont[Numbers=Monospaced]{Montserrat}[
+        %Path = ./font/,
+        %Extension = .ttf,
+        BoldFont = *-Bold,
+        BoldItalicFont = *-BoldItalic,
+        ItalicFont = *-Italic,
+        UprightFont = *-Regular,
+    ]
+}
+
+\setmathfont{TeX Gyre Termes Math}
+\setmonofont{Roboto Mono}
+
+% Path of graphics files
+\graphicspath{{./}{figures/}}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot[L]{\footnotesize \lightfont LaTeX Template ~ \thepage{}~/~\pageref{LastPage}}
+\fancyfoot[C]{\footnotesize \lightfont Esgrove}
+\fancyfoot[R]{\footnotesize \lightfont \today}
+
+\renewcommand{\headrulewidth}{0pt}              % header line width
+\renewcommand{\footrulewidth}{0.8pt}            % footer line width
+
+\setlength{\footskip}{22pt}                     % footer spacing
+\setlength{\parindent}{0pt}                     % paragraph indentation
+\setlength{\parskip}{12pt plus 2pt minus 2pt}   % paragraph lineskip
+
+% Adjust LaTex logo kerning
+\setlogokern{La}{-.1em}
+\setlogokern{aT}{.01em}
+\setlogokern{Te}{-.1em}
+\setlogokern{eX}{.01em}
+
+% TODO macro
+% Comment out second line to disable comments in document
+\newcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{{\color{red} {#1} \par}}
+
+% Logo with text
+% Args (2):
+%   image file
+%   text
+% Usage:
+%   \logopic{github.pdf}{\href{https://github.com/esgrove}{github.com/esgrove}}
+\newcommand*{\logopic}[2]{
+    % negative raisebox lowers the logo
+    \raisebox{-0.34\baselineskip}{
+        \includegraphics[
+            height=1.25\baselineskip,
+            width=1.25\baselineskip,
+            keepaspectratio,
+        ]{#1}
+    } \thinspace {#2}
+}
+
+% Picture with round frame
+% Args (4):
+%   node parameters
+%   node min width
+%   image width
+%   image file path
+% Usage:
+%   \roundpic[xshift=0cm,yshift=-0.5cm]{4cm}{5cm}{photo.jpg}
+\newcommand{\roundpic}[4][]{
+    \tikz\node [circle, minimum width = #2, path picture = {
+                \node [#1] at (path picture bounding box.center) {
+                    % scalebox can be used to mirror image
+                    \scalebox{1}[1]{\includegraphics[width=#3]{#4}}
+                };
+            }] {};
+}
